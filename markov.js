@@ -71,16 +71,7 @@ class MarkovMachine {
    *  until it hits a null choice. */
 
   getText() {
-
     let words = [];
-
-    function randomSelect(array) {
-      const min = 0;
-      const max = array.length - 1;
-
-      const selectionIndex = Math.floor(Math.random() * (max - min + 1)) + min;
-      return array[selectionIndex];
-    }
 
     // - start at the first word in the input text
     // - find a random word from the following-words of that
@@ -92,12 +83,22 @@ class MarkovMachine {
     while (nextKey !== null) {
 
       words.push(currentKey);
-      nextKey = randomSelect(this.chains[currentKey]);
+      nextKey = this.randomSelect(this.chains[currentKey]);
 
       currentKey = nextKey;
     }
 
     return words.join(" ");
+  }
+  
+  
+  /** returns a random value from an array */
+  randomSelect(array) {
+    const min = 0;
+    const max = array.length - 1;
+
+    const selectionIndex = Math.floor(Math.random() * (max - min + 1)) + min;
+    return array[selectionIndex];
   }
 }
 
