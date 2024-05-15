@@ -37,13 +37,14 @@ describe("Testing getChains", function () {
 
 
 describe("Testing getText", function () {
-  test("testing getting string with chains object", function () {
+  test("testing getting text with no branches", function () {
     const markovTest = new MarkovMachine("The cat in the hat.");
     const markovGetText = markovTest.getText();
 
-    expect(markovGetText).toEqual(
-      "The cat in the hat."
-    );
+    expect(markovGetText).toEqual("The cat in the hat.");
   });
-
+  
+  test("testing getting text with branches", function(){
+    // TODO: check that each word is followed by a valid option
+  });
 });
