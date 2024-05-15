@@ -28,27 +28,42 @@ class MarkovMachine {
 
   getChains() {
 
-    console.log("Starting chain");
+    // console.log("Starting chain");
 
-    const wordsArray = this.words;
-    const chainObject = {};
+    const words = this.words;
+    const chains = {};
 
-    for (let i = 0; i < wordsArray.length; i++) {
+    for (let i = 0; i < words.length; i++) {
+      // represents next word in words
+      let keyValue = words[i + 1];
 
-      if (chainObject[wordsArray[i]] === undefined
-      ) {
-        let keyValue = null;
+      // check if current word is a key in chains object
+      if (chains[words[i]] === undefined) {
 
-        if (wordsArray[i + 1] !== undefined) {
-          keyValue = wordsArray[i + 1];
+        // check if current word is the last word in words string
+        // if it is the last word, set the keyValue to null
+        if (words[i + 1] === undefined) {
+          keyValue = null;
         }
-        chainObject[wordsArray[i]] = [keyValue];
-      } else {
-        chainObject[wordsArray[i]].push(wordsArray[i + 1]);
+
+        // set the new key value as an array with keyValue in it
+        chains[words[i]] = [keyValue];
+      }
+
+      else { // current word already has a key
+
+        // check if current word is the last word in words string
+        // if it is the last word, set the keyValue to null
+        if (words[i + 1] === undefined) {
+          keyValue = null;
+        }
+
+        // push value to existing values array
+        chains[words[i]].push(keyValue);
       }
     }
 
-    return chainObject;
+    return chains;
   }
 
 
@@ -64,6 +79,8 @@ class MarkovMachine {
   }
 }
 
+// const textMarkov =
+//   new MarkovMachine("Now a we are engaged in a great civil in war");
 
-const textMarkov =
-  new MarkovMachine("Now a we are engaged in a great civil in war");
+
+export { MarkovMachine };
