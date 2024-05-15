@@ -71,16 +71,41 @@ class MarkovMachine {
    *  until it hits a null choice. */
 
   getText() {
-    // TODO: implement this!
+
+    let words = [];
+
+    function randomSelect(array) {
+      const min = 0;
+      const max = array.length - 1;
+
+      const selectionIndex = Math.floor(Math.random() * (max - min + 1)) + min;
+      return array[selectionIndex];
+    }
 
     // - start at the first word in the input text
     // - find a random word from the following-words of that
     // - repeat until reaching the terminal null
+
+    let currentKey = this.words[0];
+    let nextKey = undefined;
+
+    while (nextKey !== null) {
+
+      words.push(currentKey);
+      nextKey = randomSelect(this.chains[currentKey]);
+
+      currentKey = nextKey;
+    }
+
+    return words.join(" ");
   }
 }
 
-// const textMarkov =
-//   new MarkovMachine("Now a we are engaged in a great civil in war");
+
+const textMarkov =
+  new MarkovMachine("The cat is in the hat. The cat is the cat. The hat is a cat.");
+
+console.log(textMarkov.getText());
 
 
 export { MarkovMachine };

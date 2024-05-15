@@ -9,7 +9,25 @@ NO NEED FOR DOUBLE FOR LOOP
 --------
 
 iterate through the properties
-randomly pick one of the array of values
-Take the value selected as the next key
-if selection is null, stop AND THEN
-start from the first property
+> With each key, add to result stirng
+>> randomly pick one of the array of values
+>> 0 to array.length pick a number
+>> if selection is null, stop AND THEN
+
+> take that value as the key
+
+> go to the property using that key / repeat
+
+
+
+const chains = {
+  "The":  ["cat", "cat", "hat"],
+  "cat":  ["is", "is"],
+  "is":   ["in", "the", "a"],
+  "in":   ["the"],
+  "the":  ["hat.", "cat."],
+  "hat.": ["The"],
+  "cat.": ["The", null],
+  "hat":  ["is"],
+  "a":    ["cat"],
+}
